@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'plot index page' do
+RSpec.describe 'garden show page' do
   before :each do
     @garden = Garden.create!(name: "Jamie's Garden", organic: true)
     @plot1 = @garden.plots.create!(number: 1, size: "Large", direction: "West")
@@ -15,31 +15,4 @@ RSpec.describe 'plot index page' do
     visit plots_path
   end
 
-  it 'lists all plot numbers and the names of all that plots plants' do
-    within "#plot-#{@plot1.id}" do
-      expect(page).to have_content(@plot1.number)
-      expect(page).to have_content(@plant1.name)
-      expect(page).to have_content(@plant2.name)
-      expect(page).to have_content(@plant3.name)
-    end
-
-    within "#plot-#{@plot2.id}" do
-      expect(page).to have_content(@plot2.number)
-      expect(page).to_not have_content(@plant1.name)
-      expect(page).to_not have_content(@plant2.name)
-      expect(page).to have_content(@plant3.name)
-    end
-  end
-
-  it 'has a link to destroy each plant from that plot' do
-    save_and_open_page
-
-    within "#plot-#{@plot1.id}" do
-      expect(page).to have_content(@plant1.name)
-
-      click_link "Remove #{@plant1.name}"
-
-      expect(page).to_not have_content(@plant1.name)
-    end
-  end
 end
