@@ -32,8 +32,6 @@ RSpec.describe 'plot index page' do
   end
 
   it 'has a link to destroy each plant from that plot' do
-    save_and_open_page
-
     within "#plot-#{@plot1.id}" do
       expect(page).to have_content(@plant1.name)
 
