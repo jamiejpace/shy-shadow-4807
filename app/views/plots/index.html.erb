@@ -1,0 +1,9 @@
+<h1>Plots on Plots on Plots</h1>
+<% @plots.each do |plot| %>
+  <section id="plot-<%= plot.id %>">
+    <p>Plot Number: <%= plot.number %></p>
+    <p>Plot Plants: <% plot.plants.each do |plant| %></p>
+      <%= plant.name %>
+    <% end %>
+  </section><br>
+<% end %>
